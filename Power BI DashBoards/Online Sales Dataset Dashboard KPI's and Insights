@@ -1,0 +1,21 @@
+Online Sales Dataset Dashboard
+
+Key KPIs:
+Total Sales Revenue = SUM(Amount)
+Total Profit = SUM(Profit)
+Profit Margin = (SUM(Profit) / SUM(Amount)) * 100
+Total Orders = COUNT(Order ID)
+Average Order Value (AOV) = SUM(Amount) / COUNT(Order ID)
+Total Quantity Sold = SUM(Quantity)
+Top-Selling Category = Category with highest SUM(Amount)
+Top-Selling Sub-Category = Sub-Category with highest SUM(Amount)
+Most Used Payment Mode = PaymentMode with highest COUNT(Order ID)
+State/City with Highest Sales = State or City with highest SUM(Amount)
+
+
+Insights:
+Clothing is the most profitable category.
+Printers are most sold items, followed closely by Sarees.
+COD is most used payment mode
+Indore bought the most items, followed by Mumbai
+Skirt and Kurti had most negative Profit Margins
