@@ -1,0 +1,74 @@
+Predictions and Explanations (from best SMOTEENN model)
+=======================================================
+
+Sample 1 (Index 2) – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+  Features: tenure=2, MonthlyCharges=53.85, TotalCharges=108.15, Contract=Month-to-month, InternetService=DSL, PaymentMethod=Mailed check, OnlineSecurity=Yes, TechSupport=No, PaperlessBilling=Yes
+  - Low tenure (<= 12 months) increases churn risk.
+  - Month-to-month contract is associated with higher churn.
+  - DSL tends to show lower churn than Fiber optic.
+  - Automatic/bank/credit payments correlate with lower churn.
+  - Moderate MonthlyCharges correlate with lower churn.
+  - Having OnlineSecurity is associated with lower churn.
+  - No TechSupport is associated with higher churn.
+
+
+Sample 2 (Index 4) – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+  Features: tenure=2, MonthlyCharges=70.7, TotalCharges=151.65, Contract=Month-to-month, InternetService=Fiber optic, PaymentMethod=Electronic check, OnlineSecurity=No, TechSupport=No, PaperlessBilling=Yes
+  - Low tenure (<= 12 months) increases churn risk.
+  - Month-to-month contract is associated with higher churn.
+  - Fiber optic users in this dataset show higher churn on average.
+  - Electronic check payment is correlated with higher churn.
+  - Moderate MonthlyCharges correlate with lower churn.
+  - No OnlineSecurity is associated with higher churn.
+  - No TechSupport is associated with higher churn.
+  - Paperless billing correlates with higher churn in this dataset.
+
+Sample 3 (Index 0) – Actual: No, Predicted: Yes (Churn probability: 1.00)
+  Features: tenure=1, MonthlyCharges=29.85, TotalCharges=29.85, Contract=Month-to-month, InternetService=DSL, PaymentMethod=Electronic check, OnlineSecurity=No, TechSupport=No, PaperlessBilling=Yes
+  - Low tenure (<= 12 months) increases churn risk.
+  - Month-to-month contract is associated with higher churn.
+  - DSL tends to show lower churn than Fiber optic.
+  - Electronic check payment is correlated with higher churn.
+  - Moderate MonthlyCharges correlate with lower churn.
+  - No OnlineSecurity is associated with higher churn.
+  - No TechSupport is associated with higher churn.
+  - Paperless billing correlates with higher churn in this dataset.
+
+Sample 4 (Index 1) – Actual: No, Predicted: No (Churn probability: 0.00)
+  Features: tenure=34, MonthlyCharges=56.95, TotalCharges=1889.5, Contract=One year, InternetService=DSL, PaymentMethod=Mailed check, OnlineSecurity=Yes, TechSupport=No, PaperlessBilling=No
+  - Higher tenure (> 12 months) reduces churn risk.
+  - Longer contract (One year) is associated with lower churn.
+  - DSL tends to show lower churn than Fiber optic.
+  - Automatic/bank/credit payments correlate with lower churn.
+  - Moderate MonthlyCharges correlate with lower churn.
+  - Having OnlineSecurity is associated with lower churn.
+  - No TechSupport is associated with higher churn.
+
+Summary and Analysis
+====================
+
+- Model used for these predictions: Best SMOTEENN model
+  - KNeighborsClassifier (n_neighbors=3, weights='distance')
+  - Selected because it achieved the highest test accuracy in the SMOTEENN experiment.
+
+- Prediction correctness overview:
+  - Sample 1: Correct (Actual Yes, Predicted Yes)
+    - Strong churn indicators: very low tenure, month-to-month contract, paperless billing, no TechSupport.
+  - Sample 2: Correct (Actual Yes, Predicted Yes)
+    - Strong churn indicators: very low tenure, month-to-month, Fiber optic internet, electronic check, no OnlineSecurity/TechSupport, paperless billing.
+  - Sample 3: Incorrect (Actual No, Predicted Yes)
+    - Why predicted Yes: very low tenure, month-to-month, electronic check, no OnlineSecurity/TechSupport, paperless billing — a combination highly associated with churn.
+    - Why labelled No: some customers with these risk factors still do not churn; the classes overlap so a few false positives are expected.
+  - Sample 4: Correct (Actual No, Predicted No)
+    - Retention indicators: long tenure, one-year contract, no paperless billing, OnlineSecurity present.
+
+Why can errors occur even with the best model?
+- Overlapping patterns: Churn and non-churn profiles can look very similar; no model can perfectly separate them.
+- Proxy features: Variables like payment method or paperless billing shift probabilities but are not deterministic.
+- Resampling variance: SMOTEENN and train/test splits introduce variance; KNN is sensitive to local neighborhoods.
+- Possible label noise or missing temporal context: Real-world data can contain mislabeled cases or time-dependent factors not captured in the snapshot features.
+
+Is this acceptable?
+- Yes, within reason. The chosen model shows strong test accuracy overall. A small number of mistakes is normal for probabilistic models.
+- In production, tune thresholds to your business costs (balance false positives vs false negatives), add probability calibration, track precision/recall/F1/ROC-AUC, and consider additional features or model types to reduce errors further.
+  - Paperless billing correlates with higher churn in this dataset.

@@ -1,0 +1,61 @@
+Project Results – Summary and Outcomes
+=====================================
+
+This document summarizes the key outcomes produced by `telco_churn.py`. Exact figures can vary by environment and random seeds, but the structure and outputs remain consistent.
+
+Baseline Experiment (train/test split on encoded data)
+------------------------------------------------------
+- Models evaluated: Random Forest, Gradient Boosting, SVM, Logistic Regression, KNN, Decision Tree, AdaBoost, XGBoost, Naive Bayes.
+- Metric: Test Accuracy (0–1 scale).
+- Example results from a recent run:
+  - Random Forest ≈ 0.795
+  - Gradient Boosting ≈ 0.792
+  - SVM ≈ 0.731
+  - Logistic Regression ≈ 0.730
+  - K-Nearest Neighbors ≈ 0.753
+  - Decision Tree ≈ 0.753
+  - AdaBoost ≈ 0.784
+  - XGBoost ≈ 0.787
+  - Naive Bayes ≈ 0.684
+- Best baseline model (example): RandomForestClassifier (≈ 0.795)
+- Visualization: `outputs/model_scores.png` (this file will be overwritten by the SMOTEENN run if executed afterward).
+
+Imbalance Experiment (SMOTEENN resampling)
+------------------------------------------
+- Resampling: `SMOTEENN` applied to the entire encoded dataset before a fresh train/test split.
+- Same models reevaluated, with `RandomizedSearchCV` for XGBoost and `GridSearchCV` for others.
+- Example results from a recent run:
+  - Random Forest ≈ 0.949
+  - Gradient Boosting ≈ 0.954
+  - SVM ≈ 0.979
+  - Logistic Regression ≈ 0.916
+  - K-Nearest Neighbors ≈ 0.983
+  - Decision Tree ≈ 0.933
+  - AdaBoost ≈ 0.930
+  - XGBoost ≈ 0.956
+  - Naive Bayes ≈ 0.885
+- Best SMOTEENN model (example): KNN (weights='distance', n_neighbors=3) ≈ 0.983
+- Visualizations:
+  - `outputs/model_scores.png` (overwrites the baseline chart with SMOTEENN results)
+  - `outputs/confusion_matrix.png` for the best SMOTEENN model
+
+EDA Highlights
+--------------
+- `outputs/missing_heatmap.png` shows no remaining missing values after preprocessing.
+- `outputs/countplot_*.png` visualize churn ratios across categorical features.
+- `outputs/hist_*.png` and `outputs/kde_charges.png` show numeric distributions by `Churn`.
+
+Files Produced
+--------------
+- Plots directory: `outputs/`
+  - `missing_heatmap.png`
+  - `countplot_*.png` (one per categorical feature)
+  - `hist_tenure.png`, `hist_MonthlyCharges.png`, `hist_TotalCharges.png`
+  - `kde_charges.png`
+  - `model_scores.png` (baseline, then overwritten by SMOTEENN results)
+  - `confusion_matrix.png` (best SMOTEENN model)
+
+Notes
+-----
+- Accuracy values are indicative. For formal reporting, consider fixing random seeds and exporting detailed metrics (precision, recall, F1, ROC/AUC).
+- If you want separate copies of baseline vs SMOTEENN charts, rename the first `model_scores.png` before running the SMOTEENN stage.

@@ -1,0 +1,49 @@
+Images Explained – What Each Plot Shows
+======================================
+
+All images are saved in the `outputs/` directory by `telco_churn.py`.
+
+1) missing_heatmap.png
+- **What**: Heatmap of missing values across the dataset (True/False by cell).
+- **Why**: To quickly assess data completeness and identify columns/rows that may require imputation or dropping.
+- **How to read**: Dark/light cells indicate presence/absence of data. A fully blank map means no missing values after preprocessing.
+
+2) countplot_<column>.png
+- **What**: For each categorical feature, a bar chart grouped by `Churn` (Yes/No).
+- **Why**: To visualize the distribution of each category and how it relates to churn behavior.
+- **How to read**: Bars are split by `Churn`; red ≈ Yes (churned), blue ≈ No (retained). Look for categories that skew heavily toward red.
+
+3) hist_tenure.png
+- **What**: Histogram of `tenure` separated by churn status.
+- **Why**: To see how customer tenure relates to churn likelihood.
+- **How to read**: Two overlaid distributions (Yes/No). Peaks and shifts indicate different tenure patterns among churned vs retained customers.
+
+4) hist_MonthlyCharges.png
+- **What**: Histogram of `MonthlyCharges` separated by churn status.
+- **Why**: To analyze whether higher or lower monthly charges correlate with churn.
+- **How to read**: Compare the red vs blue histograms across the charge range.
+
+5) hist_TotalCharges.png
+- **What**: Histogram of `TotalCharges` separated by churn status.
+- **Why**: To understand whether lifetime revenue relates to churn behavior.
+- **How to read**: Compare distribution overlap or separation between churn classes.
+
+6) kde_charges.png
+- **What**: Density plots for `MonthlyCharges` and `TotalCharges` vs `Churn`.
+- **Why**: Smoothed alternative to histograms to inspect where classes concentrate.
+- **How to read**: Overlapping shaded areas show where churn Yes/No densities are higher.
+
+7) model_scores.png (Baseline)
+- **What**: Bar chart comparing test accuracy across multiple classifiers on the standard train/test split.
+- **Why**: Quick comparison of model performance before imbalance handling.
+- **How to read**: Taller bars indicate better accuracy. Values range from 0 to 1.
+
+8) model_scores.png (SMOTEENN)
+- **What**: The same filename is used to plot model scores after applying SMOTEENN resampling.
+- **Why**: To compare how performance changes when class imbalance is mitigated.
+- **How to read**: This plot overwrites the baseline one. Review immediately after running or keep a copy if you want both.
+
+9) confusion_matrix.png
+- **What**: Confusion matrix heatmap for the best model from the SMOTEENN experiment.
+- **Why**: To understand the balance of True Positives, True Negatives, False Positives, and False Negatives.
+- **How to read**: Diagonal cells are correct predictions; off-diagonals are errors. Use to assess precision/recall trade-offs.

@@ -1,0 +1,29 @@
+Best Model 20-Sample Predictions (SMOTEENN KNN)
+==============================================
+Model: KNeighborsClassifier(n_neighbors=3, weights='distance')
+Full test accuracy: 0.983
+
+20-sample subset accuracy: 0.950
+
+01. RowIdx 978 – Actual: No, Predicted: No (Churn probability: 0.26)
+02. RowIdx 3442 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+03. RowIdx 5749 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+04. RowIdx 2456 – Actual: No, Predicted: No (Churn probability: 0.00)
+05. RowIdx 4572 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+06. RowIdx 1281 – Actual: No, Predicted: No (Churn probability: 0.00)
+07. RowIdx 1891 – Actual: No, Predicted: No (Churn probability: 0.00)
+08. RowIdx 3697 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+09. RowIdx 3358 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+10. RowIdx 4795 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+11. RowIdx 763 – Actual: No, Predicted: No (Churn probability: 0.00)
+12. RowIdx 2799 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+13. RowIdx 5521 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+14. RowIdx 2792 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+15. RowIdx 2154 – Actual: No, Predicted: No (Churn probability: 0.00)
+16. RowIdx 1042 – Actual: No, Predicted: No (Churn probability: 0.00)
+17. RowIdx 2622 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+18. RowIdx 4148 – Actual: Yes, Predicted: Yes (Churn probability: 1.00)
+19. RowIdx 1468 – Actual: No, Predicted: No (Churn probability: 0.00)
+20. RowIdx 1121 – Actual: No, Predicted: Yes (Churn probability: 0.67)
+
+Note: Indices refer to the resampled test set rows. For full contextual explanations, see docs/PREDICTIONS.txt in the main run.

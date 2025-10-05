@@ -1,0 +1,65 @@
+Telco Customer Churn – Step-by-Step Walkthrough
+===============================================
+
+This document explains, in simple steps, what the project does in `telco_churn.py` and the artifacts it produces in the `outputs/` directory.
+
+1) Setup and Input
+- The script expects the dataset file alongside the script:
+  - WA_Fn-UseC_-Telco-Customer-Churn.csv
+- A directory `outputs/` is created automatically to save images.
+
+2) Load and Clean Data
+- Reads the CSV using pandas.
+- Converts `TotalCharges` to numeric (coercing errors to NaN).
+- Drops rows with missing values after this conversion.
+- Drops the `customerID` column (identifier not useful for modeling).
+
+3) Exploratory Data Analysis (EDA)
+- Saves a missing value heatmap: `outputs/missing_heatmap.png`.
+- For each categorical column (object/category dtype), creates a count plot versus `Churn` and saves as `outputs/countplot_<column>.png`.
+- For key numeric columns (`tenure`, `MonthlyCharges`, `TotalCharges`), creates histograms by `Churn` and saves:
+  - `outputs/hist_tenure.png`
+  - `outputs/hist_MonthlyCharges.png`
+  - `outputs/hist_TotalCharges.png`
+- Creates KDE (density) plots for `MonthlyCharges` and `TotalCharges` by `Churn`:
+  - `outputs/kde_charges.png`
+
+4) Encode Categorical Features
+- One-hot encodes all categorical columns using `OneHotEncoder`.
+- Renames `Churn_Yes` to `Churn` and removes `Churn_No` to create a single binary target column.
+
+5) Train/Test Split
+- Splits the encoded data into train (80%) and test (20%) using a fixed random state for reproducibility.
+
+6) Baseline Model Evaluation
+- Trains multiple classification models with light hyperparameter grids using `GridSearchCV`:
+  - Random Forest, Gradient Boosting, SVM, Logistic Regression, KNN, Decision Tree, AdaBoost, XGBoost, Naive Bayes
+- Each model is wrapped in a pipeline with `MinMaxScaler` when appropriate.
+- Prints accuracy for each model and identifies the best one.
+- Saves a bar chart comparing model accuracies to `outputs/model_scores.png` (Baseline section).
+
+7) Imbalance Handling with SMOTEENN
+- Applies SMOTEENN to the entire encoded dataset (before splitting again).
+- Splits the resampled data into train/test.
+- Repeats model evaluation:
+  - Uses `RandomizedSearchCV` for XGBoost and `GridSearchCV` for others (lighter grids).
+- Prints accuracy for each model and identifies the best one under SMOTEENN.
+- Saves another bar chart (second run) to `outputs/model_scores.png` (note: this overwrites the baseline chart by design).
+- Computes and saves the confusion matrix heatmap for the best SMOTEENN model as `outputs/confusion_matrix.png`.
+
+8) Outputs Summary
+- All plots are written under `outputs/`:
+  - missing_heatmap.png
+  - countplot_*.png (one per categorical column)
+  - hist_tenure.png, hist_MonthlyCharges.png, hist_TotalCharges.png
+  - kde_charges.png
+  - model_scores.png (updated by the SMOTEENN experiment)
+  - confusion_matrix.png (best SMOTEENN model)
+
+9) Optional: Showing Plots
+- To display plots interactively while also saving, set `main(show_plots=True)` inside `telco_churn.py`.
+
+10) Next Extensions (optional)
+- Persist best model to disk with joblib for deployment.
+- Add CLI flags to enable/disable EDA, baseline, or SMOTEENN stages.
+- Export a CSV report of model scores and confusion matrix.

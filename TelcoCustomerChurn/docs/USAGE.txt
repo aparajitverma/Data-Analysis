@@ -1,0 +1,66 @@
+Usage Guide – Running the Telco Churn Project
+=============================================
+
+Prerequisites
+-------------
+- Windows with Python 3.10+ installed and available on PATH.
+- Project files located in: d:\work\data a\TelcoCustomerChurn\
+  - telco_churn.py
+  - requirements.txt
+  - WA_Fn-UseC_-Telco-Customer-Churn.csv
+
+Create and Activate Virtual Environment (PowerShell)
+----------------------------------------------------
+1) Open PowerShell in the project folder:
+   PS> cd 'd:\work\data a\TelcoCustomerChurn'
+
+2) Create the venv:
+   PS> python -m venv .venv
+
+3) Activate the venv:
+   PS> .\.venv\Scripts\Activate.ps1
+
+Install Dependencies
+--------------------
+4) Upgrade pip (recommended):
+   (.venv) PS> python -m pip install --upgrade pip
+
+5) Install requirements:
+   (.venv) PS> pip install -r requirements.txt
+
+Run the Pipeline
+----------------
+6) Execute the script:
+   (.venv) PS> python .\telco_churn.py
+
+7) Review outputs in the folder:
+   d:\work\data a\TelcoCustomerChurn\outputs\
+   - missing_heatmap.png
+   - countplot_*.png (per categorical feature)
+   - hist_tenure.png, hist_MonthlyCharges.png, hist_TotalCharges.png
+   - kde_charges.png
+   - model_scores.png (overwritten by SMOTEENN run)
+   - confusion_matrix.png (best SMOTEENN model)
+
+Show Plots Interactively (optional)
+-----------------------------------
+- Edit telco_churn.py and set: main(show_plots=True)
+- Re-run the script to display figures while also saving them.
+
+Deactivate the Virtual Environment
+----------------------------------
+- When finished:
+  (.venv) PS> deactivate
+
+Command Prompt (cmd.exe) equivalents
+------------------------------------
+- Activate venv:  .\.venv\Scripts\activate.bat
+- Run script:     python .\telco_churn.py
+- Deactivate:     deactivate
+
+Troubleshooting
+---------------
+- If the dataset file is missing, the script will raise a FileNotFoundError. Place
+  WA_Fn-UseC_-Telco-Customer-Churn.csv in the same folder as telco_churn.py.
+- If installation fails for a package, ensure you are using the venv’s Python and pip.
+- If plots do not appear, check the `outputs/` folder; set show_plots=True to display windows.

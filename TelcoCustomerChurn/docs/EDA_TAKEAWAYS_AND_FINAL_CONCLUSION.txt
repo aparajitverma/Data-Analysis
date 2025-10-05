@@ -1,0 +1,53 @@
+EDA Takeaways and Final Conclusion
+=================================
+
+Key EDA Takeaways (from generated images)
+----------------------------------------
+- Tenure and Lifecycle
+  - Very low tenure (≤ 12 months) shows substantially higher churn in histograms and density plots.
+  - Longer tenure segments display steadily lower churn; TotalCharges patterns largely mirror tenure.
+
+- Contract Structure
+  - Month-to-month has the highest churn bars in countplots by `Contract`.
+  - One-year and Two-year contracts show visibly lower churn proportions.
+
+- Internet Service Type
+  - `Fiber optic` customers exhibit higher churn share than `DSL` in the countplots.
+  - This pattern persists even when looking at distributions conditioned on churn.
+
+- Payment Method and Billing
+  - `Electronic check` stands out with higher churn bars relative to autopay methods (Credit card/Bank transfer) in countplots.
+  - `PaperlessBilling = Yes` associates with higher churn in the plots; treat as a dataset-specific proxy rather than causal.
+
+- Add-on Support/Security
+  - `OnlineSecurity = No` and `TechSupport = No` align with higher churn bars; their presence reduces churn proportions.
+
+- Pricing Effects
+  - Higher `MonthlyCharges` correlate with higher churn in histograms and KDEs; mid-range charges look more stable.
+  - `TotalCharges` differences largely reflect tenure; caution for collinearity.
+
+- Overlap and Ambiguity
+  - Distributions for churn vs non-churn overlap across several features (e.g., moderate `MonthlyCharges`, mid-tenure), indicating borderline segments where errors are expected even with strong models.
+
+Final Conclusion (concise)
+-------------------------
+- Model and Performance
+  - After handling imbalance with SMOTEENN, the best-performing model is KNN (`n_neighbors=3`, `weights='distance'`).
+  - Held-out test accuracy is ~0.98; a 20-sample probe reported ~0.95 accuracy.
+
+- Most Influential Signals (observed)
+  - Tenure (early lifecycle risk), Contract (month-to-month risk; 1–2 year stability), InternetService (Fiber optic risk > DSL),
+    PaymentMethod (Electronic check risk), Add-ons (OnlineSecurity/TechSupport helpful), PaperlessBilling (proxy risk),
+    and price level (`MonthlyCharges`).
+
+- Why Some Errors Persist
+  - Overlapping profiles between churners and non-churners, proxy features (not causation), resampling/neighbor sensitivity, and possible label/temporal noise.
+
+- Operational Guidance
+  - Calibrate probability threshold to business costs (balance false negatives vs false positives).
+  - Track precision/recall/F1/ROC-AUC in addition to accuracy; consider probability calibration for decisioning.
+  - Target high-risk clusters (month-to-month + fiber + electronic check + no security/support + high charges) with tailored retention offers and autopay nudges.
+
+- Next Steps
+  - Add contextual features (support tickets, usage trends, plan changes), explore ensembles and calibration,
+    and implement monitoring for drift with periodic retraining.
