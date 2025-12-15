@@ -106,7 +106,6 @@ german-credit-risk/
 | Neural Network | 72.0% | 0.717 | 46.7% |
 | Deep Neural Network | 72.0% | 0.717 | 46.7% |
 
-
 ## 🔍 Key Insights
 
 ### Risk Factors
