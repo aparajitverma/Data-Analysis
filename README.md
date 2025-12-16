@@ -1,150 +1,118 @@
-# 🏦 German Credit Risk Analysis
+# 📊 Data-Analysis Repository
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 
+A collection of data analysis projects covering various domains including credit risk assessment, customer churn prediction, car data analysis, solar radiation studies, and business intelligence dashboards.
+
+## 📁 Repository Structure
+
+This repository contains multiple data analysis projects, each in its own folder:
+
+### 🏦 German Credit Risk Analysis
+**Folder**: `German Credit Risk/`
+
 A comprehensive machine learning analysis of the German Credit Risk dataset to predict loan default risk using various classification models.
 
-## 📊 Overview
-
-This project explores credit risk assessment using the UCI German Credit dataset. The analysis includes:
+**Key Features**:
 - Exploratory Data Analysis (EDA) with visualizations
 - Feature engineering and preprocessing
-- Multiple machine learning models comparison
-- Model evaluation and interpretation
+- Multiple ML models comparison (Logistic Regression, XGBoost, Random Forest, etc.)
+- Model evaluation with confusion matrices and ROC curves
 - Interactive prediction interface
 
-## 🎯 Key Findings
+**Technologies**: Python, Pandas, Scikit-learn, XGBoost, Jupyter Notebook
 
-- **Best Model**: Logistic Regression with 73.2% accuracy and 0.763 ROC-AUC
-- **Top Predictors**: Credit amount, duration, account status, housing
-- **Feature Engineering**: Log-transforms and missing value indicators improved performance by ~3%
-- **Business Impact**: Enables data-driven credit decisions with interpretable results
+**Results**: Logistic Regression achieved 73.2% accuracy with 0.763 ROC-AUC
 
-## 📁 Project Structure
+---
 
-```
-german-credit-risk/
-│
-├── german_credit_data.csv          # Dataset (UCI German Credit)
-├── german_credit_eda.ipynb         # Main analysis notebook
-├── requirements.txt                # Python dependencies
-├── linkedin_blog_german_credit copy.md  # Blog post summary
-├── output/                         # Generated plots and results
-│   └── images/                     # Visualization images
-└── README.md                       # This file
-```
+### 🚗 Car Data Analysis EDA
+**Folder**: `Car Data Analysis EDA/`
 
-## 🚀 Installation
+Exploratory data analysis of car dataset focusing on pricing, features, and market trends.
+
+---
+
+### 💰 Telco Customer Churn Prediction
+**Folder**: `TelcoCustomerChurn/`
+
+Analysis of telecommunications customer data to predict churn and identify retention strategies.
+
+---
+
+### ☀️ Solar Radiation in Rajasthan
+**Folder**: `Solar radiation in Rajasthan/`
+
+Study of solar radiation patterns and potential in Rajasthan region for renewable energy planning.
+
+---
+
+### 📊 Power BI Dashboards
+**Folder**: `Power BI DashBoards/`
+
+Collection of interactive business intelligence dashboards created with Power BI for data visualization and reporting.
+
+---
+
+### 💳 Germ Credit Risk Data Analysis
+**Folder**: `Germ Credit risk data analysis/`
+
+Additional analysis and insights on German credit risk data.
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.8 or higher
+- Python 3.8+ (for Python-based projects)
+- Power BI Desktop (for dashboard projects)
 - Jupyter Notebook/Lab
 
-### Setup
+### Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/german-credit-risk.git
-   cd german-credit-risk
+   git clone https://github.com/aparajitverma/Data-Analysis.git
+   cd Data-Analysis
    ```
 
-2. Create a virtual environment:
+2. For Python projects, create a virtual environment:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
+   pip install -r requirements.txt  # If available in project folders
    ```
 
 ## 📖 Usage
 
-### Running the Analysis
-1. Launch Jupyter:
-   ```bash
-   jupyter notebook
-   ```
+Each project folder contains its own analysis. Navigate to the specific project folder and follow the instructions in its README or notebook files.
 
-2. Open `german_credit_eda.ipynb`
+### Running Python Projects
+```bash
+cd "Project Folder"
+jupyter notebook  # or jupyter lab
+```
 
-3. Run all cells sequentially to reproduce the analysis
-
-### Key Sections
-- **Data Loading & Preprocessing**: Handle missing values, encoding
-- **EDA**: Univariate/bivariate analysis, correlations
-- **Modeling**: Train and compare 7 ML models
-- **Evaluation**: Confusion matrices, ROC curves, feature importance
-- **Interactive UI**: Web-based prediction interface
-
-## 📊 Dataset
-
-**Source**: UCI Machine Learning Repository (Statlog German Credit Data)
-
-**Size**: 1,000 observations, 20 features + target
-
-**Target**: Credit risk (good/bad)
-
-**Features**:
-- Demographics: Age, Sex, Job
-- Financial: Credit amount, Duration
-- Accounts: Checking/Saving accounts status
-- Other: Housing, Purpose, etc.
-
-**Challenge**: 30% class imbalance, missing values in account features
-
-## 🤖 Models Compared
-
-| Model | Accuracy | ROC-AUC | Recall (Bad) |
-|-------|----------|---------|--------------|
-| **Logistic Regression** | 73.2% | 0.763 | 69.3% |
-| XGBoost | 72.8% | 0.738 | 48.0% |
-| LightGBM | 74.4% | 0.731 | 41.3% |
-| Random Forest | 70.8% | 0.689 | 45.3% |
-| Gradient Boosting | 70.4% | 0.721 | 40.0% |
-| Neural Network | 72.0% | 0.717 | 46.7% |
-| Deep Neural Network | 72.0% | 0.717 | 46.7% |
-
-## 🔍 Key Insights
-
-### Risk Factors
-- **High Credit Amounts**: Associated with higher default rates
-- **Long Durations**: Extended loan terms increase risk
-- **Account Status**: "Little" balances are strong risk indicators
-- **Housing**: Renters show higher bad rates than owners
-
-### Model Performance
-- Logistic Regression provides best balance of accuracy and interpretability
-- Feature engineering (log-transforms, missing indicators) improved performance
-- ROC-AUC ceiling around 0.75 suggests dataset limitations
+### Viewing Power BI Dashboards
+- Open `.pbix` files with Power BI Desktop
+- Publish to Power BI Service for web viewing
 
 ## 🛠️ Technologies Used
 
-- **Python**: Core language
-- **Pandas/NumPy**: Data manipulation
-- **Scikit-learn**: ML models and preprocessing
-- **Matplotlib/Seaborn**: Visualization
-- **XGBoost/LightGBM**: Advanced ensemble methods
-- **Jupyter**: Interactive development
-- **IPyWidgets**: Interactive UI
-
-## 📈 Results & Visualizations
-
-The analysis generates various plots saved in `output/images/`:
-- Distribution plots
-- Correlation heatmaps
-- Confusion matrices
-- ROC curves
-- Feature importance charts
+- **Python**: Core language for data analysis
+- **Pandas/NumPy**: Data manipulation and analysis
+- **Scikit-learn**: Machine learning algorithms
+- **Matplotlib/Seaborn**: Data visualization
+- **XGBoost/LightGBM**: Advanced ML models
+- **Jupyter**: Interactive development environment
+- **Power BI**: Business intelligence and dashboards
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -am 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Submit a pull request
+3. Add your data analysis project in a new folder
+4. Commit changes: `git commit -am 'Add new project'`
+5. Push to branch: `git push origin feature-name`
+6. Submit a pull request
 
 ## 📄 License
 
@@ -152,9 +120,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- UCI Machine Learning Repository for the dataset
-- Scikit-learn, XGBoost, and other open-source libraries
-- Inspiration from various credit risk analysis projects
+- UCI Machine Learning Repository for datasets
+- Kaggle for additional datasets
+- Open-source community for tools and libraries
 
 ## 📞 Contact
 
@@ -164,4 +132,4 @@ For questions or suggestions:
 
 ---
 
-**#MachineLearning #CreditRisk #DataScience #Finance #Python #EDA**
+**#DataAnalysis #MachineLearning #Python #PowerBI #DataScience #EDA #BusinessIntelligence**
